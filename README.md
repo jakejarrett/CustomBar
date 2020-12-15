@@ -12,10 +12,10 @@ Before building the project you will need the following dependencies:
 
 ## How to build
 
-Just run `qtmoc && ./build` in the CustomBar directory after installing dependencies
+Just run `qtmoc && ./build.sh` in the CustomBar directory after installing dependencies
 
 ## Configuration
 
 Configuration file: `$HOME/.config/custombar/config`
 
-[Configuration documentation](https://github.com/Grivel-l/CustomBar/wiki)
+[Configuration documentation](https://github.com/jakejarrett/CustomBar/wiki)
