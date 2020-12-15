@@ -58,7 +58,7 @@ func main() {
 	}
 	initWindow(config.General, widget)
 	initConfigs(app, config)
-	initLauncher(config.Launcher)
+	initLauncher(config.Launcher, config.General.Height, app)
 	err = initWorkspaces(config.Workspaces, xutil)
 	if err != nil {
 		errorHandler(err)

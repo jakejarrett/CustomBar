@@ -26,7 +26,6 @@ func initWindow(config structs.GeneralConfig, widget *widgets.QWidget) {
 	widget.SetMaximumSize2(config.Width, config.Height)
 	widget.SetAttribute(core.Qt__WA_X11NetWmWindowTypeDock, true)
 	widget.SetAttribute(core.Qt__WA_TranslucentBackground, true)
-	widget.SetStyleSheet("background-color: rgba(0, 0, 0, 200)")
 
 	widget.Show()
 }
