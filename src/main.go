@@ -26,7 +26,7 @@ var texts map[string]*widgets.QLabel
 func initConfigs(app *widgets.QApplication, config structs.BarConfig) {
 	var font *gui.QFont
 
-	font = gui.NewQFont()
+	font = gui.NewQFont2(config.General.FontFamily, 11, int(gui.QFont__Normal), false)
 	font.SetPixelSize(config.General.FontSize)
 	app.SetFont(font, "")
 }
