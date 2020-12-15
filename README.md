@@ -18,4 +18,4 @@ Just run `qtmoc && ./build.sh` in the CustomBar directory after installing depen
 
 Configuration file: `$HOME/.config/custombar/config`
 
-[Configuration documentation](https://github.com/jakejarrett/CustomBar/wiki)
+[Configuration documentation](https://github.com/jakejarrett/CustomBar/wiki/Configuration)
