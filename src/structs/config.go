@@ -2,13 +2,14 @@ package structs
 
 // GeneralConfig configuration
 type GeneralConfig struct {
-	Height      int     `json:"height"`
-	Width       int     `json:"width"`
-	MarginTop   int     `json:"margin-top"`
-	MarginRight int     `json:"margin-right"`
-	MarginLeft  int     `json:"margin-left"`
-	FontSize    int     `json:"font-size"`
-	Opacity     float64 `json:"opacity"`
+	Height       int     `json:"height"`
+	Width        int     `json:"width"`
+	MarginTop    int     `json:"margin-top"`
+	MarginRight  int     `json:"margin-right"`
+	MarginLeft   int     `json:"margin-left"`
+	MarginBottom int     `json:"margin-bottom"`
+	FontSize     int     `json:"font-size"`
+	Opacity      float64 `json:"opacity"`
 }
 
 // TrayConfig configuration
