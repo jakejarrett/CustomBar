@@ -1,17 +1,9 @@
 package parsing
 
 import (
-    "../structs"
+	"../structs"
 )
 
-func time(config *structs.TimeConfig, property string, value string) {
-    switch (property) {
-        case "click":
-            if (value == "true") {
-                config.Click = true
-            } else {
-                config.Click = false
-            }
-    }
+func time(loadedConfig structs.TimeConfig, config *structs.TimeConfig) {
+	config.Click = loadedConfig.Click
 }
-

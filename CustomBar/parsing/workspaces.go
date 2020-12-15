@@ -1,19 +1,10 @@
 package parsing
 
 import (
-    "../structs"
+	"../structs"
 )
 
-func workspaces(config *structs.WorkspacesConfig, property string, value string) {
-    switch (property) {
-        case "click":
-            if (value == "true") {
-                config.Click = true
-            } else {
-                config.Click = false
-            }
-        case "current-color":
-            config.CurrentColor = value
-    }
+func workspaces(loadedConfig structs.WorkspacesConfig, config *structs.WorkspacesConfig) {
+	config.Click = loadedConfig.Click
+	config.CurrentColor = loadedConfig.CurrentColor
 }
-

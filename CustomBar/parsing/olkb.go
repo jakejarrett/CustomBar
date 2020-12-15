@@ -1,14 +1,10 @@
 package parsing
 
 import (
-    "../structs"
+	"../structs"
 )
 
-func olkb(config *structs.OlkbConfig, property string, value string) {
-    config.Enable = true
-    switch (property) {
-        case "order":
-            config.Order = value
-    }
+func olkb(loadedConfig structs.OlkbConfig, config *structs.OlkbConfig) {
+	config.Enable = loadedConfig.Enable
+	config.Order = loadedConfig.Order
 }
-

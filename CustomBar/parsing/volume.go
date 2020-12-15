@@ -1,19 +1,10 @@
 package parsing
 
 import (
-    "../structs"
+	"../structs"
 )
 
-func volume(config *structs.VolumeConfig, property string, value string) {
-    switch (property) {
-        case "scroll":
-            if (value == "true") {
-                config.Scroll = true
-            } else {
-                config.Scroll = false
-            }
-        case "icon":
-            config.Icon = value
-    }
+func volume(loadedConfig structs.VolumeConfig, config *structs.VolumeConfig) {
+	config.Icon = loadedConfig.Icon
+	config.Scroll = loadedConfig.Scroll
 }
-

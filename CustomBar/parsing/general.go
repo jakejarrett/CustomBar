@@ -1,30 +1,21 @@
 package parsing
 
 import (
-    "strconv"
-    "../structs"
+	"../structs"
 )
 
-func general (config *structs.GeneralConfig, property string, value string) (error) {
-    var err error
+func general(loadedConfig structs.GeneralConfig, config *structs.GeneralConfig, defaultWidth int) {
+	width := loadedConfig.Width
+	config.MarginTop = loadedConfig.MarginTop
+	config.MarginRight = loadedConfig.MarginRight
+	config.MarginLeft = loadedConfig.MarginLeft
+	config.Height = loadedConfig.Height
+	config.Opacity = loadedConfig.Opacity
+	config.FontSize = loadedConfig.FontSize
 
-    err = nil
-    switch (property) {
-        case "margin-top":
-            config.MarginTop, err = strconv.Atoi(value)
-        case "margin-right":
-            config.MarginRight, err = strconv.Atoi(value)
-        case "margin-left":
-            config.MarginLeft, err = strconv.Atoi(value)
-        case "height":
-            config.Height, err = strconv.Atoi(value)
-        case "width":
-            config.Width, err = strconv.Atoi(value)
-        case "opacity":
-            config.Opacity, err = strconv.ParseFloat(value, 64)
-        case "font-size":
-            config.FontSize, err = strconv.Atoi(value)
-    }
-    return (err)
+	if width == 0 {
+		width = defaultWidth
+	}
+
+	config.Width = width
 }
-

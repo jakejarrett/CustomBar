@@ -1,13 +1,9 @@
 package parsing
 
 import (
-    "../structs"
+	"../structs"
 )
 
-func power(config *structs.PowerConfig, property string, value string) {
-    switch (property) {
-        case "icon":
-            config.Icon = value
-    }
+func power(loadedConfig structs.PowerConfig, config *structs.PowerConfig) {
+	config.Icon = loadedConfig.Icon
 }
-

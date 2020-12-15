@@ -1,96 +1,68 @@
 package parsing
 
 import (
-    "os"
-    "fmt"
-    "strings"
-    "io/ioutil"
-    "../structs"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
+
+	"../structs"
 )
 
-func handleLine(line string, config *structs.BarConfig, module *string) (error) {
-    var err     error
-    var option  []string
+func handleJSONConfig(loadedConfig structs.BarConfig, config *structs.BarConfig, defaultWidth int) {
 
-    switch (line) {
-        case "[volume]", "[power]", "[workspaces]", "[tray]", "[general]", "[time]", "[olkb]":
-            *module = line[1:len(line) - 1]
-            return nil
-    }
-    option = strings.Split(line, "=")
-    if (len(option) != 2) {
-        return nil
-    }
-    err = nil
-    switch (*module) {
-        case "general":
-            err = general(&config.General, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "power":
-            power(&config.Power, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "workspaces":
-            workspaces(&config.Workspaces, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "tray":
-            err = tray(&config.Tray, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "volume":
-            volume(&config.Volume, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "time":
-            time(&config.Time, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "olkb":
-            olkb(&config.Olkb, strings.TrimSpace(option[0]), strings.TrimSpace(option[1]))
-        case "":
-            fmt.Printf("WARNING: Ignored property '%v', needs to be in a module\n", strings.TrimSpace(option[0]))
-    }
-    return err
+	general(loadedConfig.General, &config.General, defaultWidth)
+	power(loadedConfig.Power, &config.Power)
+	workspaces(loadedConfig.Workspaces, &config.Workspaces)
+	launcher(loadedConfig.Launcher, &config.Launcher)
+	tray(loadedConfig.Tray, &config.Tray)
+	volume(loadedConfig.Volume, &config.Volume)
+	time(loadedConfig.Time, &config.Time)
+	olkb(loadedConfig.Olkb, &config.Olkb)
 }
 
 func defaultConfig(config *structs.BarConfig, width int) {
-    config.General.Height = 33
-    config.General.Height = 33
-    config.General.Width = width
-    config.General.MarginTop = 0
-    config.General.MarginLeft = 0
-    config.General.MarginRight = 0
-    config.General.Opacity = 40
-    config.General.FontSize = 16
-    config.Workspaces.CurrentColor = "#0053a0"
-    config.Workspaces.Click = true
-    config.Volume.Icon = ""
-    config.Volume.Scroll = true
-    config.Power.Icon = ""
-    config.Tray.Padding = 5
-    config.Time.Click = true
-    config.Olkb.Enable = false
-    config.Olkb.Order = ""
+	config.General.Height = 33
+	config.General.Height = 33
+	config.General.Width = width
+	config.General.MarginTop = 0
+	config.General.MarginLeft = 0
+	config.General.MarginRight = 0
+	config.General.Opacity = 40
+	config.General.FontSize = 16
+	config.Workspaces.CurrentColor = "#0053a0"
+	config.Workspaces.Click = true
+	config.Volume.Icon = ""
+	config.Volume.Scroll = true
+	config.Power.Icon = ""
+	config.Tray.Padding = 5
+	config.Time.Click = true
+	config.Olkb.Enable = false
+	config.Olkb.Order = ""
+	config.Launcher.Click = false
+	config.Launcher.Color = "white"
 }
 
-func FillConfig(appName string, config *structs.BarConfig, width int) (error) {
-    var i       int
-    var err     error
-    var content []byte
-    var lines   []string
-    var path    string
-    var module  string
+func getJSONFile(path string) structs.BarConfig {
+	var config structs.BarConfig
+	jsonFile, err := os.Open(path)
 
-    defaultConfig(config, width)
-    path = strings.Join([]string{os.Getenv("HOME"), "/.config/", appName, "/config"}, "")
-    _, err = os.Stat(path)
-    if (os.IsNotExist(err)) {
-        fmt.Printf("WARNING: Config file is missing, using default config\n")
-        return nil
-    } else if (err != nil && !os.IsExist(err)) {
-        return err
-    }
-    content, err = ioutil.ReadFile(path)
-    if (err != nil) {
-        return err
-    }
-    module = ""
-    lines = strings.Split(string(content), "\n")
-    for i = 0; i < len(lines); i++ {
-        err = handleLine(lines[i], config, &module)
-        if (err != nil) {
-            return fmt.Errorf("Bad value at line %v of config file: %v", i + 1, strings.TrimSpace(strings.Split(lines[i], "=")[1]))
-        }
-    }
-    return nil
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(byteValue, &config)
+
+	return config
+}
+
+// FillConfig will read the config or create a default config.
+func FillConfig(appName string, config *structs.BarConfig, width int) error {
+	defaultConfig(config, width)
+	jsonPath := fmt.Sprintf("%s/.config/%s/config.json", os.Getenv("HOME"), appName)
+	jsonContent := getJSONFile(jsonPath)
+	handleJSONConfig(jsonContent, config, width)
+	return nil
 }
