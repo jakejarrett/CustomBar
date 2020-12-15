@@ -12,7 +12,7 @@ Before building the project you will need the following dependencies:
 
 ## How to build
 
-Just run `qtmoc && go build` in the CustomBar directory after installing dependencies
+Just run `qtmoc && ./build` in the CustomBar directory after installing dependencies
 
 ## Configuration
 
