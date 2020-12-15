@@ -2,6 +2,7 @@ package structs
 
 // GeneralConfig configuration
 type GeneralConfig struct {
+	FontFamily   string  `json:"font-family"`
 	Height       int     `json:"height"`
 	Width        int     `json:"width"`
 	MarginTop    int     `json:"margin-top"`
