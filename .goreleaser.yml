@@ -1,0 +1,12 @@
+before:
+  hooks:
+    - go mod download
+builds:
+- main: ./src/main.go
+  goos:
+    - linux
+  goarch:
+    - amd64
+release:
+  github:
+  prerelease: auto

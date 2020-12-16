@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"./structs"
-	"github.com/BurntSushi/xgbutil"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
 )
@@ -21,16 +20,17 @@ func updateMargin(layoutP unsafe.Pointer, size int) {
 	layout.SetContentsMargins(0, 0, size, 0)
 }
 
-func initWindow(config structs.GeneralConfig, widget *widgets.QWidget) {
+func initWindow(config structs.GeneralConfig, widget *widgets.QWidget, screen *core.QRect) {
 	widget.SetMinimumSize2(config.Width, config.Height)
 	widget.SetMaximumSize2(config.Width, config.Height)
 	widget.SetAttribute(core.Qt__WA_X11NetWmWindowTypeDock, true)
 	widget.SetAttribute(core.Qt__WA_TranslucentBackground, true)
+	widget.Move2(screen.Left(), screen.Top())
 
 	widget.Show()
 }
 
-func createLayout(widget *widgets.QWidget, xutil *xgbutil.XUtil, config structs.GeneralConfig) error {
+func createLayout(widget *widgets.QWidget, config structs.GeneralConfig) error {
 	var err error
 	var grid *widgets.QHBoxLayout
 	var box [3]*widgets.QHBoxLayout
