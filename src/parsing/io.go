@@ -41,6 +41,7 @@ func createDefaultConfig() structs.BarConfig {
 		Time: structs.TimeConfig{
 			Click:      true,
 			FontWeight: "normal",
+			Color:      "white",
 		},
 		Tray: structs.TrayConfig{
 			Padding: 5,
@@ -48,11 +49,13 @@ func createDefaultConfig() structs.BarConfig {
 		Power: structs.PowerConfig{
 			Icon:       "",
 			FontWeight: "normal",
+			Color:      "white",
 		},
 		Volume: structs.VolumeConfig{
 			Icon:       "",
 			Scroll:     true,
 			FontWeight: "normal",
+			Color:      "white",
 		},
 		Workspaces: structs.WorkspacesConfig{
 			Click:        true,
@@ -104,6 +107,7 @@ func getJSONFile(path string) structs.BarConfig {
 func FillConfig(appName string, config *structs.BarConfig, width int) error {
 	jsonPath := fmt.Sprintf("%s/.config/%s", os.Getenv("HOME"), appName)
 	jsonContent := getJSONFile(jsonPath)
+	fmt.Printf("config: %v", jsonContent)
 	handleJSONConfig(jsonContent, config, width)
 	return nil
 }

@@ -6,4 +6,6 @@ import (
 
 func power(loadedConfig structs.PowerConfig, config *structs.PowerConfig) {
 	config.Icon = loadedConfig.Icon
+	config.FontWeight = loadedConfig.FontWeight
+	config.Color = loadedConfig.Color
 }

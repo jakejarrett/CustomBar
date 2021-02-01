@@ -23,6 +23,7 @@ type VolumeConfig struct {
 	Scroll     bool   `json:"scroll"`
 	Icon       string `json:"icon"`
 	FontWeight string `json:"font-weight"`
+	Color      string `json:"color"`
 }
 
 // WorkspacesConfig configuration
@@ -30,6 +31,7 @@ type WorkspacesConfig struct {
 	Click        bool   `json:"click"`
 	CurrentColor string `json:"current-color"`
 	FontWeight   string `json:"font-weight"`
+	Color        string `json:"color"`
 }
 
 // Launcher configuration
@@ -43,12 +45,14 @@ type Launcher struct {
 type PowerConfig struct {
 	Icon       string `json:"icon"`
 	FontWeight string `json:"font-weight"`
+	Color      string `json:"color"`
 }
 
 // TimeConfig configuration
 type TimeConfig struct {
 	Click      bool   `json:"click"`
 	FontWeight string `json:"font-weight"`
+	Color      string `json:"color"`
 }
 
 // OlkbConfig configuration
@@ -56,6 +60,7 @@ type OlkbConfig struct {
 	Enable     bool   `json:"enable"`
 	Order      string `json:"order"`
 	FontWeight string `json:"font-weight"`
+	Color      string `json:"color"`
 }
 
 // BarConfig configuration

@@ -14,11 +14,14 @@ func initDate(signals *Signals, config structs.TimeConfig) {
 	var accurate bool
 	var filter *core.QObject
 	var timer *time.Timer
+	var stylesheet string = fmt.Sprintf("color: %v; font-weight: %v", config.Color, config.FontWeight)
+
+	fmt.Printf("config: %v", config)
 
 	accurate = false
 	texts["time"] = widgets.NewQLabel(nil, 0)
 	texts["time"].SetAlignment(core.Qt__AlignCenter)
-	texts["time"].SetStyleSheet(fmt.Sprintf("color: %s; font-weight: %s", config.Color, config.FontWeight))
+	texts["time"].SetStyleSheet(stylesheet)
 	if config.Click {
 		filter = core.NewQObject(nil)
 		filter.ConnectEventFilter(func(watched *core.QObject, event *core.QEvent) bool {
