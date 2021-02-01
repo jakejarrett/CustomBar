@@ -32,7 +32,7 @@ func initLauncher(config structs.Launcher, heightOffset int, app *widgets.QAppli
 	texts["launcher"].SetText("Launcher")
 	texts["launcher"].SetMinimumWidth(40)
 	texts["launcher"].SetAlignment(core.Qt__AlignHCenter | core.Qt__AlignVCenter)
-	texts["launcher"].SetStyleSheet(fmt.Sprintf("color: %s", config.Color))
+	texts["launcher"].SetStyleSheet(fmt.Sprintf("color: %s; font-weight: %s", config.Color, config.FontWeight))
 	texts["launcher"].SetEnabled(true)
 	if config.Click {
 		filter = core.NewQObject(nil)

@@ -34,25 +34,30 @@ func createDefaultConfig() structs.BarConfig {
 			MarginBottom: 0,
 		},
 		Launcher: structs.Launcher{
-			Click: true,
-			Color: "white",
+			Click:      true,
+			Color:      "white",
+			FontWeight: "normal",
 		},
 		Time: structs.TimeConfig{
-			Click: true,
+			Click:      true,
+			FontWeight: "normal",
 		},
 		Tray: structs.TrayConfig{
 			Padding: 5,
 		},
 		Power: structs.PowerConfig{
-			Icon: "",
+			Icon:       "",
+			FontWeight: "normal",
 		},
 		Volume: structs.VolumeConfig{
-			Icon:   "",
-			Scroll: true,
+			Icon:       "",
+			Scroll:     true,
+			FontWeight: "normal",
 		},
 		Workspaces: structs.WorkspacesConfig{
 			Click:        true,
 			CurrentColor: "#0053a0",
+			FontWeight:   "normal",
 		},
 	}
 

@@ -20,36 +20,42 @@ type TrayConfig struct {
 
 // VolumeConfig configuration
 type VolumeConfig struct {
-	Scroll bool   `json:"scroll"`
-	Icon   string `json:"icon"`
+	Scroll     bool   `json:"scroll"`
+	Icon       string `json:"icon"`
+	FontWeight string `json:"font-weight"`
 }
 
 // WorkspacesConfig configuration
 type WorkspacesConfig struct {
 	Click        bool   `json:"click"`
 	CurrentColor string `json:"current-color"`
+	FontWeight   string `json:"font-weight"`
 }
 
 // Launcher configuration
 type Launcher struct {
-	Click bool   `json:"click"`
-	Color string `json:"color"`
+	Click      bool   `json:"click"`
+	Color      string `json:"color"`
+	FontWeight string `json:"font-weight"`
 }
 
 // PowerConfig configuration
 type PowerConfig struct {
-	Icon string `json:"icon"`
+	Icon       string `json:"icon"`
+	FontWeight string `json:"font-weight"`
 }
 
 // TimeConfig configuration
 type TimeConfig struct {
-	Click bool `json:"click"`
+	Click      bool   `json:"click"`
+	FontWeight string `json:"font-weight"`
 }
 
 // OlkbConfig configuration
 type OlkbConfig struct {
-	Enable bool   `json:"enable"`
-	Order  string `json:"order"`
+	Enable     bool   `json:"enable"`
+	Order      string `json:"order"`
+	FontWeight string `json:"font-weight"`
 }
 
 // BarConfig configuration

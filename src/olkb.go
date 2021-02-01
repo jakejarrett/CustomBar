@@ -21,7 +21,7 @@ func initOlkb(signals *Signals, config structs.OlkbConfig) {
     }
     texts["olkb"] = widgets.NewQLabel(nil, 0)
     texts["olkb"].SetAlignment(core.Qt__AlignCenter)
-    texts["olkb"].SetStyleSheet("color: white")
+    .SetStyleSheet(fmt.Sprintf("color: %s; font-weight: %s", config.Color, config.FontWeight))
     go checkOrders(signals, config)
 }
 
